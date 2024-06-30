@@ -12,15 +12,11 @@ from django.db import transaction
 from booking.models.user_models import CustomUser
 import jwt
 import time
-from decouple import config
-
-
 
 # Zoom Configuration
-ACCOUNT_ID = config('ACCOUNT_ID')
-CLIENT_ID = config('CLIENT_ID')
-CLIENT_SECRET = config('CLIENT_SECRET')
-
+ACCOUNT_ID = settings.ACCOUNT_ID
+CLIENT_ID = settings.CLIENT_ID
+CLIENT_SECRET = settings.CLIENT_SECRET
 
 
 

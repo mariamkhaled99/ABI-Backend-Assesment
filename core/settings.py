@@ -12,7 +12,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
-from decouple import config
+import environ
+
+env = environ.Env()
+environ.Env.read_env('.env')  # Reading the .env file
+
+
+# from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,10 +28,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = ''
+# Django settings
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG_Dev')
 
 ALLOWED_HOSTS = []
 
@@ -174,12 +181,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-SECRET_KEY = config('SECRET_KEY')
-
 # Zoom Configuration
-ZOOM_API_KEY = config('ZOOM_API_KEY')
-ZOOM_API_SECRET = config('ZOOM_API_SECRET')
-ACCOUNT_ID = config('ACCOUNT_ID')
-ZOOM_SECRET_TOKEN = config('ZOOM_SECRET_TOKEN')
-CLIENT_ID = config('CLIENT_ID')
-CLIENT_SECRET = config('CLIENT_SECRET')
+ZOOM_API_KEY = env('ZOOM_API_KEY')
+ZOOM_API_SECRET = env('ZOOM_API_SECRET')
+ACCOUNT_ID = env('ACCOUNT_ID')
+ZOOM_SECRET_TOKEN = env('ZOOM_SECRET_TOKEN')
+CLIENT_ID = env('CLIENT_ID')
+CLIENT_SECRET = env('CLIENT_SECRET')

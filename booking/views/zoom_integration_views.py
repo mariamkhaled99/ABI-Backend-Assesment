@@ -7,14 +7,14 @@ import requests
 from django.conf import settings
 import jwt
 import time
-from decouple import config
+
 
 
 
 # Zoom Configuration
-ACCOUNT_ID = config('ACCOUNT_ID')
-CLIENT_ID = config('CLIENT_ID')
-CLIENT_SECRET = config('CLIENT_SECRET')
+ACCOUNT_ID = settings.ACCOUNT_ID
+CLIENT_ID = settings.CLIENT_ID
+CLIENT_SECRET = settings.CLIENT_SECRET
 
 @extend_schema_view(
     create_meeting=extend_schema(tags=['Zoom Integration'], summary="Create a new Zoom meeting."),
