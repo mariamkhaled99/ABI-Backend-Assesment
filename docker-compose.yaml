@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  app:
+    build: ./docker/django
+    volumes:
+      - .:/core
+    ports:
+      - 8000:8000
+    container_name: ABI_Zoom_App_django
+    command: >
+      sh -c "wait-for-it && \
+        python manage.py migrate && \
+        python manage.py runserver 0.0.0.0:8000"
+
+    environment:
+      - DB_HOST=postgres
+      - DB_Name=ABI_Zoom_App
+      - DB_USER=postgres
+      - DB_PASS=password
+   
+    
+  postgres:
+    build: ./docker/db
+    container_name: ABI_Zoom_App_db
+    environment:
+      - POSTGRES_DB=ABI_Zoom_App
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    
+   
+    
+
+
